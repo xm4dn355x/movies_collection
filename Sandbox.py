@@ -11,21 +11,12 @@
 #####################################################################################################################
 
 
-import wx
-
-# begin wxGlade: dependencies
 import gettext
-
-
-# end wxGlade
-
-# begin wxGlade: extracode
-# end wxGlade
+import wx
 
 
 class MainFrame(wx.Frame):
     def __init__(self, *args, **kwds):
-        # begin wxGlade: MainFrame.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.SetSize((1280, 720))
@@ -42,13 +33,19 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.on_update, id=3)
         wxglade_tmp_menu.Append(4, _(u"Добавить фильм"), _(u"Добавить один, или несколько фильмов в библиотеку"))
         self.Bind(wx.EVT_MENU, self.on_add_film, id=4)
-        item = wxglade_tmp_menu.Append(wx.ID_ANY, _(u"Добавить актера/жанр/студию..."),
-                                       _(u"Добавить новый критерий для сортировки и поиска по библиотеке"))
+        item = wxglade_tmp_menu.Append(
+            wx.ID_ANY,
+            _(u"Добавить актера/жанр/студию..."),
+            _(u"Добавить новый критерий для сортировки и поиска по библиотеке")
+        )
         self.Bind(wx.EVT_MENU, self.on_add_filter, id=item.GetId())
         self.main_frame_menubar.Append(wxglade_tmp_menu, _(u"Библиотека"))
         wxglade_tmp_menu = wx.Menu()
-        wxglade_tmp_menu.Append(6, _(u"Настройки программы"),
-                                _(u"Настроки путей поиска фильмов для библиотеки, интерфейса и т.д."))
+        wxglade_tmp_menu.Append(
+            6,
+            _(u"Настройки программы"),
+            _(u"Настроки путей поиска фильмов для библиотеки, интерфейса и т.д.")
+        )
         self.Bind(wx.EVT_MENU, self.on_settings, id=6)
         self.main_frame_menubar.Append(wxglade_tmp_menu, _(u"Настройки"))
         wxglade_tmp_menu = wx.Menu()
@@ -70,41 +67,23 @@ class MainFrame(wx.Frame):
                                               _("choice 1"), _("choice 1"), _("choice 1"), _("choice 1"), _("choice 1"),
                                               _("choice 1")], style=wx.LB_MULTIPLE | wx.LB_NEEDED_SB | wx.LB_SORT)
         self.films_panel = wx.ScrolledWindow(self, wx.ID_ANY, style=wx.TAB_TRAVERSAL)
-        self.film_preview_copy_8 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                 wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                           wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy_1 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy_2 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy_3 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy_4 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy_5 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy_6 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
-        self.film_preview_copy_7 = wx.BitmapButton(self.films_panel, wx.ID_ANY,
-                                                   wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico",
-                                                             wx.BITMAP_TYPE_ANY))
+
+        # Заглушки для отображения тестового контента
+        self.film_preview_copy_8 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy_1 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy_2 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy_3 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy_4 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy_5 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy_6 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
+        self.film_preview_copy_7 = wx.BitmapButton(self.films_panel, wx.ID_ANY, wx.Bitmap("X:\\#Work\\Python\\wxGlade-0.9.6\\icons\\wxglade128.ico", wx.BITMAP_TYPE_ANY))
 
         self.__set_properties()
         self.__do_layout()
 
-    # end wxGlade
 
     def __set_properties(self):
-        # begin wxGlade: MainFrame.__set_properties
         self.SetTitle(_(u"Коллекция фильмов"))
         self.SetFont(wx.Font(10, wx.FONTFAMILY_MODERN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "JetBrains Mono"))
         self.main_frame_statusbar.SetStatusWidths([-1])
@@ -118,6 +97,8 @@ class MainFrame(wx.Frame):
             wx.Font(10, wx.FONTFAMILY_MODERN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, "JetBrains Mono"))
         self.filter_selector.SetSelection(1)
         self.list_box_1.SetMinSize((170, -1))
+
+        # Свойства превьюшек заглушек
         self.film_preview_copy_8.SetMinSize((320, 180))
         self.film_preview_copy.SetMinSize((320, 180))
         self.film_preview_copy_1.SetMinSize((320, 180))
@@ -129,11 +110,12 @@ class MainFrame(wx.Frame):
         self.film_preview_copy_7.SetMinSize((320, 180))
         self.films_panel.SetScrollRate(10, 10)
 
-    # end wxGlade
 
     def __do_layout(self):
-        # begin wxGlade: MainFrame.__do_layout
         main_sizer = wx.BoxSizer(wx.HORIZONTAL)
+
+        # TODO: Убрать инициализацию и переписать на генератор контента
+        # TODO: GridSizer должен генерироваться по формуле cols = (size.x - 170)/320, rows = len(db_data)/cols + 1
         grid_films_sizer = wx.GridSizer(3, 3, 0, 0)
         film_sizer_copy_7 = wx.BoxSizer(wx.VERTICAL)
         film_sizer_copy_6 = wx.BoxSizer(wx.VERTICAL)
@@ -144,10 +126,14 @@ class MainFrame(wx.Frame):
         film_sizer_copy_1 = wx.BoxSizer(wx.VERTICAL)
         film_sizer_copy = wx.BoxSizer(wx.VERTICAL)
         film_sizer = wx.BoxSizer(wx.VERTICAL)
+
         filters_sizer = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, _(u"Фильтры:")), wx.VERTICAL)
         filters_sizer.Add(self.filter_selector, 0, 0, 0)
         filters_sizer.Add(self.list_box_1, 1, 0, 0)
         main_sizer.Add(filters_sizer, 0, wx.EXPAND, 0)
+
+        # TODO: Написать генератор на основании данных из БД
+        # TODO: У сайзера нужно использовать метод Clear(True) для очищения его перед тем, продолжить прогонять по циклу
         film_sizer.Add(self.film_preview_copy_8, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
         film_title_copy_8 = wx.StaticText(self.films_panel, wx.ID_ANY, _("Film name"), style=wx.ALIGN_CENTER)
         film_title_copy_8.SetMinSize((320, 36))
@@ -238,13 +224,13 @@ class MainFrame(wx.Frame):
         film_tags_copy_7.SetMinSize((320, 54))
         film_sizer_copy_7.Add(film_tags_copy_7, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
         grid_films_sizer.Add(film_sizer_copy_7, 1, wx.EXPAND, 0)
+
         self.films_panel.SetSizer(grid_films_sizer)
         main_sizer.Add(self.films_panel, 1, wx.EXPAND, 0)
         self.SetSizer(main_sizer)
         self.Layout()
         self.Bind(wx.EVT_SIZE, self.on_resize)
 
-    # end wxGlade
 
     def on_exit(self, event):  # wxGlade: MainFrame.<event_handler>
         """Close the frame, terminating the application."""
@@ -280,6 +266,10 @@ class MainFrame(wx.Frame):
         print(f"on_resize is working! size = {size}")
         print(event)
         self.Layout()
+
+    def draw_content(self):
+        grid_films_sizer = 0
+        return grid_films_sizer
 
 
 # end of class MainFrame
