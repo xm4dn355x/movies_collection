@@ -113,7 +113,53 @@ class MainFrame(wx.Frame):
 
     def __do_layout(self):
         main_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        filters_sizer = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, _(u"Фильтры:")), wx.VERTICAL)
+        filters_sizer.Add(self.filter_selector, 0, 0, 0)
+        filters_sizer.Add(self.list_box_1, 1, 0, 0)
+        main_sizer.Add(filters_sizer, 0, wx.EXPAND, 0)
+        self.films_panel.SetSizer(self.draw_content())
+        main_sizer.Add(self.films_panel, 1, wx.EXPAND, 0)
+        self.SetSizer(main_sizer)
+        self.Layout()
+        self.Bind(wx.EVT_SIZE, self.on_resize)
 
+
+    def on_exit(self, event):  # wxGlade: MainFrame.<event_handler>
+        """Close the frame, terminating the application."""
+        self.Close(True)
+
+    def on_update(self, event):  # wxGlade: MainFrame.<event_handler>
+        print("Event handler 'on_update' not implemented!")
+        event.Skip()
+
+    def on_add_film(self, event):  # wxGlade: MainFrame.<event_handler>
+        print("Event handler 'on_add_film' not implemented!")
+        event.Skip()
+
+    def on_add_filter(self, event):  # wxGlade: MainFrame.<event_handler>
+        print("Event handler 'on_add_filter' not implemented!")
+        event.Skip()
+
+    def on_settings(self, event):  # wxGlade: MainFrame.<event_handler>
+        print("Event handler 'on_settings' not implemented!")
+        event.Skip()
+
+    def on_about(self, event):  # wxGlade: MainFrame.<event_handler>
+        """Display an About Dialog"""
+        wx.MessageBox("MIT License\nCopyright (c) 2020 Michael Nikitenko\n\nhttps://github.com/xm4dn355x/",
+                      "О программе", wx.OK | wx.ICON_INFORMATION)
+
+    def on_help(self, event):  # wxGlade: MainFrame.<event_handler>
+        print("Event handler 'on_help' not implemented!")
+        event.Skip()
+
+    def on_resize(self, event):
+        size = self.GetSize()
+        print(f"on_resize is working! size = {size}")
+        print(event)
+        self.Layout()
+
+    def draw_content(self):
         # TODO: Убрать инициализацию и переписать на генератор контента
         # TODO: GridSizer должен генерироваться по формуле cols = (size.x - 170)/320, rows = len(db_data)/cols + 1
         grid_films_sizer = wx.GridSizer(3, 3, 0, 0)
@@ -126,11 +172,6 @@ class MainFrame(wx.Frame):
         film_sizer_copy_1 = wx.BoxSizer(wx.VERTICAL)
         film_sizer_copy = wx.BoxSizer(wx.VERTICAL)
         film_sizer = wx.BoxSizer(wx.VERTICAL)
-
-        filters_sizer = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, _(u"Фильтры:")), wx.VERTICAL)
-        filters_sizer.Add(self.filter_selector, 0, 0, 0)
-        filters_sizer.Add(self.list_box_1, 1, 0, 0)
-        main_sizer.Add(filters_sizer, 0, wx.EXPAND, 0)
 
         # TODO: Написать генератор на основании данных из БД
         # TODO: У сайзера нужно использовать метод Clear(True) для очищения его перед тем, продолжить прогонять по циклу
@@ -224,51 +265,6 @@ class MainFrame(wx.Frame):
         film_tags_copy_7.SetMinSize((320, 54))
         film_sizer_copy_7.Add(film_tags_copy_7, 0, wx.ALIGN_CENTER_HORIZONTAL, 0)
         grid_films_sizer.Add(film_sizer_copy_7, 1, wx.EXPAND, 0)
-
-        self.films_panel.SetSizer(grid_films_sizer)
-        main_sizer.Add(self.films_panel, 1, wx.EXPAND, 0)
-        self.SetSizer(main_sizer)
-        self.Layout()
-        self.Bind(wx.EVT_SIZE, self.on_resize)
-
-
-    def on_exit(self, event):  # wxGlade: MainFrame.<event_handler>
-        """Close the frame, terminating the application."""
-        self.Close(True)
-
-    def on_update(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'on_update' not implemented!")
-        event.Skip()
-
-    def on_add_film(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'on_add_film' not implemented!")
-        event.Skip()
-
-    def on_add_filter(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'on_add_filter' not implemented!")
-        event.Skip()
-
-    def on_settings(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'on_settings' not implemented!")
-        event.Skip()
-
-    def on_about(self, event):  # wxGlade: MainFrame.<event_handler>
-        """Display an About Dialog"""
-        wx.MessageBox("MIT License\nCopyright (c) 2020 Michael Nikitenko\n\nhttps://github.com/xm4dn355x/",
-                      "О программе", wx.OK | wx.ICON_INFORMATION)
-
-    def on_help(self, event):  # wxGlade: MainFrame.<event_handler>
-        print("Event handler 'on_help' not implemented!")
-        event.Skip()
-
-    def on_resize(self, event):
-        size = self.GetSize()
-        print(f"on_resize is working! size = {size}")
-        print(event)
-        self.Layout()
-
-    def draw_content(self):
-        grid_films_sizer = 0
         return grid_films_sizer
 
 
